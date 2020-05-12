@@ -1,0 +1,14 @@
+{
+  "name": "ejercicios-js-warm-up",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --collectCoverage=false"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jest": "^25.5.4"
+  }
+}
