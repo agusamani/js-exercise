@@ -1,39 +1,5 @@
 // No cambies los nombres de las funciones.
 
-function minutosASegundos(minutos) {
-    // Crea una función que tome un número como argumento, incremente el número en +1 y devuelva el resultado.
-    // Tu código:
-    return minutos * 60;
-}
-
-function triArea(base, altura) {
-    // Escribe una función que tome la base y la altura de un triángulo y devuelva su área.
-    // Ayuda: El área de un triángulo es: (base * altura) / 2
-    // Tu código:
-    return base * altura / 2;
-}
-
-function menorACien(num1, num2) {
-    // Dados dos números, devuelve true si la suma de ambos números es menor que 100. 
-    // De lo contrario, devuelve falso.
-    // Tu código:
-    return num1 + num2 < 100;
-}
-
-function divisibleEnCinco(numero) {
-    // Crea una función que devuelva true si un número entero es divisible por 5, y false en caso contrario.
-    // Tu código:
-    return numero % 5 === 0;
-}
-
-function comparaCaracteres(str1, str2) {
-    // Cree una función que tome dos strings como argumentos y devuelva true o false
-    // dependiendo de si el número total de caracteres en la primera cadena es igual al número
-    // total de caracteres en la segunda cadena.
-    // Tu código:
-    return str1.length === str2.length; 
-}
-
 function buscaIndice(array, elemento) {
     // Cree una función que encuentre y devuelva el índice de un elemento dado dentro de un array.
     // Si el elemento no se encuentra en dentro del array devuelve -1.
@@ -197,25 +163,282 @@ function repetirCaracteres() {
     };
 }
 
+function buscaDestruye(arr) {
+    // Crea una funcion que tome un array de enteros como primer argumento, seguido de 1 o mas argumentos los cuales son enteros.
+    // Esta funcion tiene que eliminar los numeros del array que coincidan con los argumentos siguientes.
+    // Ayuda: debes usar la keyword 'arguments'
 
+    const array = Object.values(arguments).slice(1);
+
+    return arr.filter(x => !array.find(y => y === x));
+}
+
+function mergeArrays(arr1, arr2) {
+    // Crea una funcion que tome dos arrays de enteros como parametros, que haga un merge de los arrays y devuelva ese array.
+    // Ej: arr1 = [1, 2 ,3] arr2 = [4, 5, 6] => [1, 2, 3, 4, 5, 6]
+    let mergeArr = [];
+
+    for(let el of arr1) {
+        mergeArr.push(el)
+    }
+
+    for(let el of arr2) {
+        mergeArr.push(el)
+    }
+
+    return mergeArr;
+}
+
+function mergeExclusivo(arr1, arr2) {
+    // Crea una funcion que tome dos arrays de enteros como parametros, que haga un merge de los arrays y devuelva ese array.
+    // Se tienen que incluir solo los numeros que no se repiten en ambos arrays
+    // Ej: arr1 = [1, 2, 3, 4] arr2 = [1, 2, 4, 5, 6] => [ 3, 5, 6]
+
+    let mergeArr = [];
+
+    for(let el of arr1) {
+        if(!arr2.includes(el)) mergeArr.push(el)
+    }
+
+    for(let el of arr2) {
+        if(!arr1.includes(el)) mergeArr.push(el)
+    }
+
+    return mergeArr;
+}
+
+
+
+const data = ['auto', 'auto', 'camion', 'camion', 'bici', 'moto', 'auto', 'bus', 'bici', 'moto', 'auto', 'bus', 'auto', 'camion', 'cuatriciclo'];
+
+function sumarElTipo(vehiculos) {
+    // La funcion llamada 'sumarElTipo' recibe un array de strings como argumento
+    // que contiene tipos de vehiculos y debe devolver un objeto con la cantidad
+    // de veces que se repita cada vehiculo.
+    // Ej:
+    // sumarElTipo(['auto', 'moto', 'auto']); debe retornar {auto: 2, moto: 1}
+    const transporte = vehiculos.reduce(function(obj, item) {
+        if (!obj[item]) {
+            obj[item] = 0;
+        }
+        obj[item]++;
+        return obj;
+    }, {});
+    
+    return transporte;
+}
+function crearClaseEmprendedor() {
+    class Emprendedor {
+        constructor(nombre, apellido, libros, mascotas) {
+            // El constructor de la clase Emprendedor recibe nombre (string), apellido (string), libros (array de objetos), mascotas (array de strings)
+            // Inicializar las propiedades de la persona con los valores recibidos como argumento
+
+            // Tu código aca:
+            this.nombre = nombre;
+            this.apellido = apellido;
+            this.libros = libros;
+            this.mascotas = mascotas;
+        }
+        
+        getMascotas() {
+            // El método 'getMascotas' debe retornar la cantidad de mascotas que tiene el emprendedor.
+            // Ej:
+            // Suponiendo que el emprendedor tiene estas mascotas: ['perro', 'gato']
+            // emprendedor.getMascotas() debería devolver 2;
+
+            // Tu código aca:
+            return this.mascotas.length;
+        }
+        
+        addBook(book, autor) {
+            // El método 'addBook' recibe un string 'book' y un string 'autor' y debe agregar un objeto:
+            // { nombre: book, autor: autor} al arreglo de amigos de la persona.
+            // No debe retornar nada.
+
+            // Tu código aca:
+            this.libros.push({nombre: book, autor: autor})
+        }
+        
+        getBooks() {
+            // El método 'getBooks' debe retornar un arreglo con sólo los nombres del arreglo de libros del emprendedor.
+            // Ej:
+            // Suponiendo que el emprendedor tiene estos libros: [{nombre: 'Lord of the Flies',autor: 'William Golding'}, {nombre: 'The Foundation Trilogy', autor: 'Isaac Asimov'}]
+            // emprendedor.getBooks() debería devolver ['Lord of the Flies', 'The Foundation Trilogy']
+
+            // Tu código aca:
+
+            let nombreLibros = this.libros.map(function(libro) {
+                return libro.nombre;
+            })
+            return nombreLibros;
+        }
+    
+        getAuthors() {
+            // El metodo 'getAuthors' debe retornar un arreglo con solo los nombres de los autores de los libros del emprendedor
+            // En el caso de que exista un autor repetido, no deberia devolver el autor repetido
+            // Suponiendo que el emprendedor tiene estos libros: 
+            // [ {nombre: 'The Foundation Trilogy', autor: 'Isaac Asimov'},{nombre: 'Yo, Robot', autor: 'Isaac Asimov'}]
+            // emprendedor.getAuthors() debería devolver ['Isaac Asimov']
+
+            // Tu código aca:
+            let authors = [];
+            this.libros.forEach((libro) => {
+                if(!authors.includes(libro.autor)) {
+                    authors.push(libro.autor)
+                }
+            })
+            return authors;
+        }
+
+        getFullName() {
+            // El metodo getFullName debe retornar un string con el nombre y apellido del emprendedor.
+            // ej:
+            // Suponiendo que el emprendedor tiene: nombre: 'Elon' y apellido: 'Musk'
+            // emprendedor.getFullName() deberia devolver 'Elon Musk'
+
+            // Tu código aca:
+            return `${this.nombre} ${this.apellido}`;
+        }
+    }
+
+    return Emprendedor;
+}
+
+function actividadesEnComun(persona1, persona2) {
+    // La funcion llamada 'actividadesEnComun' recibe como argumento dos arrays de strings llamados 'persona1' y 'persona2'
+    // y debe devolver un array de strings con los actividades en comun entre cada array.
+    // ej: persona1 = ['leer', 'comer', 'pasear', 'dormir', 'jugar']
+    //     persona2 = ['comer', 'dormir', 'futbol']
+    // actividadesEnComun(persona1, persona2) => ['comer', 'dormir']
+
+    // Tu código aca:
+    let mutualAct = [];
+    for (let i = 0; i < persona1.length; i++) {
+        for (let j = 0; j < persona2.length; j++) {
+          if (persona1[i] === persona2[j]) {
+            mutualAct.push(persona1[i]);
+          }
+        }
+    };
+    return mutualAct
+}
+
+function mapear() {
+    // Escribi una funcion mapear en el prototipo del objeto global 'Array'
+    // que recibe una funcion callback , que se ejecuta por cada elemento del array
+    // mapear los elementos de ese array segun la funcion callback
+    // Esta funcion tiene que devolver un array nuevo con los elementos mapeados.
+    // MO USAR LA FUNCION MAP DE ARRAYS.
+    // ej:
+    // var numeros = [1, 2, 3, 4];
+    // numeros.mapear(function(numero) {
+    //   return numero + 1;
+    // }) => [2, 3, 4, 5]
+
+    // Tu código aca:
+
+    Array.prototype.mapear = function(callback) {
+        const newArray = [];
+    
+        for (let i = 0; i < this.length; i++) {
+            newArray[i] = callback(this[i], i);
+        }
+    
+    return newArray;
+    }
+}
+
+function cuantosOnline(usuarios) {
+    // La funcion llamada "cuantosOnline" recibe como argumento un objeto 'usuarios', cada property de ese objeto es a su vez un objeto
+    // cada usuario tiene una property 'online' que es un booleano.
+    // deberia devolver la cantidad de usuarios con la property online igual a true.
+    // ej:
+    // let usuarios = {
+    //     toni: {
+    //         edad: 33,
+    //         online: true
+    //     },
+    //     emi: {
+    //         edad: 25,
+    //         online: true
+    //     },
+    //     fran: {
+    //         edad: 25,
+    //         online: false
+    //     },
+    //     agus: {
+    //         edad: 24,
+    //         online: false
+    //     }
+    // }; 
+    // cuantosOnline(usuarios) devuelve 2
+
+    // Tu código aca:
+
+    var counter = 0;
+    for (var user in usuarios) {
+        if (usuarios[user]["online"] === true) {
+            counter++
+        }
+        // change code above this line
+
+    } 
+    return counter;
+}
+
+function stringMasLarga(str) {
+  // La función llamada 'stringMasLarga', recibe como argumento un string con palabras
+  // y debe devolver el string más largo que hay en ese string (Es decir el de mayor cantidad de caracteres)
+  // Ej:
+  // stringMasLarga('Ayer fui a pasear a una plaza'); debe retornar 'pasear'
+  // stringMasLarga('Me gusta mucho javascript'); debe retornar 'javascript'
+
+  // Tu código aca:
+
+  let longsest = str.split(' ').sort((a, b)  =>  b.length - a.length );
+  return longsest[0];
+}
+
+function sumaTodos(array) {
+    // La funcion llamada 'sumaTodos' recibe como argumento un array con dos numeros
+    // y debe devolver la suma total entre todos los numeros dentro de ese rango
+    // ej:
+    // sumaTodos([1,3]) => 1 + 2 + 3 = 6
+    // Nota: Los numeros no necesariamente estan ordenados de mayor a menor.
+
+    // Tu código aca:
+
+    var max = Math.max(...array);
+    var min = Math.min(...array);
+    var suma = 0;
+    for (var i = min; i <= max; i++) {
+        suma += i;
+    }
+    return suma;
+}
 
 module.exports = {
-    minutosASegundos,
-    triArea,
-    menorACien,
-    divisibleEnCinco,
-    comparaCaracteres,
-    buscaIndice,
-    contiene,
-    ultimaLetraEsH,
-    tieneEspacios,
-    sumaNumeros,
-    intercambioNumeros,
-    filtraNumeros,
-    repetirLetras,
-    contarVocales,
-    numeroSimetrico,
-    indexPrimeraVocal,
-    promedioEsEntero,
-    repetirCaracteres
-  };
+buscaIndice,
+contiene,
+ultimaLetraEsH,
+tieneEspacios,
+sumaNumeros,
+intercambioNumeros,
+filtraNumeros,
+repetirLetras,
+contarVocales,
+numeroSimetrico,
+indexPrimeraVocal,
+promedioEsEntero,
+repetirCaracteres,
+buscaDestruye,
+mergeArrays,
+mergeExclusivo,
+sumarElTipo,
+crearClaseEmprendedor,
+actividadesEnComun,
+mapear,
+cuantosOnline,
+stringMasLarga,
+sumaTodos
+};
